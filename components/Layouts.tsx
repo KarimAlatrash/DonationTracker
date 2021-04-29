@@ -12,6 +12,7 @@ const Layout: React.FC<Props> = (props) => (
     <style jsx global>{`
       html {
         box-sizing: border-box;
+        
       }
       *,
       *:before,
@@ -20,12 +21,15 @@ const Layout: React.FC<Props> = (props) => (
       }
       body {
         margin: 0;
-        padding: 0;
+        padding: 0 2rem;
         font-size: 16px;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
           Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
           "Segoe UI Symbol";
         background: rgba(0, 0, 0, 0.05);
+        background-color: rgba(17, 31, 154, 1);
+        color: #ffffff;
+        
       }
       input,
       textarea {
@@ -35,11 +39,7 @@ const Layout: React.FC<Props> = (props) => (
         cursor: pointer;
       }
     `}</style>
-    <style jsx>{`
-      .layout {
-        padding: 0 2rem;
-      }
-    `}</style>
+    
   </div>
 );
 
