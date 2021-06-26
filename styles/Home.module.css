@@ -120,3 +120,17 @@
     flex-direction: column;
   }
 }
+
+.header {
+  font-family: Futura;
+  font-size: 24px;
+  font-weight: 400;
+}
+.bodyText {
+  font-family: Futura;
+  font-size: 20px;
+  font-weight: 400;
+}
+.orange {
+  color: #FFA05A;
+}

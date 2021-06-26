@@ -16,3 +16,7 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.MuiFormControl-root {
+  margin: auto;
+}
