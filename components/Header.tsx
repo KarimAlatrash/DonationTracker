@@ -5,13 +5,16 @@ import { useRouter } from 'next/router'
 import { signOut, useSession } from 'next-auth/client'
 import textStyles from '../styles/Home.module.css';
 import { GetServerSideProps } from 'next';
-import { prisma } from '@prisma/client';
+import prisma from "../lib/prisma";
 
 export const getServerSideProps: GetServerSideProps = async ({params}) => {
   if(params?.id) {
     const authorName = await prisma.user.findUnique({
       where: {
         id: Number(params.id),
+      },
+      select : {
+        name : true,
       },
     });
 
