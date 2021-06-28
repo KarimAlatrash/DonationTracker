@@ -126,11 +126,32 @@
   font-size: 24px;
   font-weight: 400;
 }
+.xlBodyText {
+  font-family: Futura;
+  font-size: 48px;
+  font-weight: 400;
+}
 .bodyText {
   font-family: Futura;
   font-size: 20px;
   font-weight: 400;
 }
+.smallBodyText {
+  font-family: Futura;
+  font-size: 16px;
+  font-weight: 400;
+  overflow:hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 .orange {
+  color: #FFA05A;
+}
+
+.hyperlink {
+  text-decoration: underline #FFA05A;
+  color: #FFFFFF;
+}
+.hyperlink:hover {
   color: #FFA05A;
 }

@@ -15,10 +15,11 @@ export type Donation = {
     date : string,
 }
 
-const SingleDonationCard: FC<SingleDonationProps> = (donationProps : SingleDonationProps)=> {
+const SingleDonationCard: FC<SingleDonationProps> = (donationProps)=> {
     return (
         <div className={`${styles.cardContainer} ${styles.donationContainer}`}>
-          <ReactMarkdown className={textStyles.bodyText} children={donationProps.donation.institution} />
+          <ReactMarkdown className={textStyles.smallBodyText} children={donationProps.donation.institution} />
+          <ReactMarkdown className={textStyles.smallBodyText} children={`$${donationProps.donation.amount}`} />
         </div>
     );
 };

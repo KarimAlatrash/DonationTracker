@@ -1,0 +1,33 @@
+.form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.formContainer {
+    padding-left:2rem;
+    padding-bottom:2rem;
+}
+
+.formField {
+    width: 50%;
+    min-width: 20rem;
+    margin: 2rem;
+    height: 4rem;
+    padding: 0rem 1rem;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+
+}
+
+.confirmButton {
+    border-radius: 20px;
+    background-color: #FFA05A;
+    width: 193px;
+    height: 57px;
+    color: #FFFFFF;
+    outline: none;
+    border: none;
+    margin: 1rem;
+}

@@ -66,7 +66,7 @@ const DonationOverview: FC<DonationOverviewProps> = ({amount} : DonationOverview
 
           </div>
           
-          <ReactMarkdown className={textStyles.bodyText}children={`$${amount[periodStrings[selectedPeriodID]]}`} />
+          <ReactMarkdown className={textStyles.xlBodyText}children={`$${amount[periodStrings[selectedPeriodID]]}`} />
           <style jsx>{`
               div {
               background-color: rgba(17, 31, 154, 1);;

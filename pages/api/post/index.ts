@@ -5,14 +5,16 @@ import prisma from '../../../lib/prisma'
 // Required fields in body: title
 // Optional fields in body: content
 export default async function handle(req, res) {
-  const { title, content } = req.body
+  const { institution, amount } = req.body
 
   const session = await getSession({ req })
-  const result = await prisma.post.create({
+  const result = await prisma.donation.create({
     data: {
-      title: title,
-      content: content,
+      institution: institution,
+      amount: amount,
       author: { connect: { email: session?.user?.email } },
+      published: true,
+      
     },
   })
   res.json(result)

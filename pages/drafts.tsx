@@ -4,6 +4,7 @@ import React from 'react'
 import { GetServerSideProps } from 'next'
 import Layout from '../components/Layouts'
 import Post, { PostProps } from '../components/Post'
+import SingleDonationCard, {Donation} from '../components/SingleDonationCard'
 import { useSession, getSession } from 'next-auth/client'
 import prisma from '../lib/prisma'
 
@@ -14,7 +15,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     return { props: { drafts: [] } }
   }
 
-  const drafts = await prisma.post.findMany({
+  const drafts = await prisma.donation.findMany({
     where: {
       author: { email: session.user.email },
       published: false,
@@ -31,7 +32,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 }
 
 type Props = {
-  drafts: PostProps[]
+  drafts: Donation[]
 }
 
 const Drafts: React.FC<Props> = (props) => {
@@ -51,9 +52,9 @@ const Drafts: React.FC<Props> = (props) => {
       <div className="page">
         <h1>My Drafts</h1>
         <main>
-          {props.drafts.map((post) => (
-            <div key={post.id} className="post">
-              <Post post={post} />
+          {props.drafts.map((donation) => (
+            <div key={donation.id} className="post">
+              <SingleDonationCard donation={donation} />
             </div>
           ))}
         </main>

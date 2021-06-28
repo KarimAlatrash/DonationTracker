@@ -2,10 +2,10 @@ import prisma from '../../../lib/prisma'
 
 // PUT /api/publish/:id
 export default async function handle(req, res) {
-  const postId = req.query.id
-  const post = await prisma.post.update({
-    where: { id: Number(postId) },
+  const donationId = req.query.id
+  const donation = await prisma.donation.update({
+    where: { id: Number(donationId) },
     data: { published: true },
   })
-  res.json(post)
+  res.json(donation)
 }

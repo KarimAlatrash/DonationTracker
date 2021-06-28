@@ -3,8 +3,33 @@ import React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { signOut, useSession } from 'next-auth/client'
+import textStyles from '../styles/Home.module.css';
+import { GetServerSideProps } from 'next';
+import { prisma } from '@prisma/client';
 
-const Header: React.FC = () => {
+export const getServerSideProps: GetServerSideProps = async ({params}) => {
+  if(params?.id) {
+    const authorName = await prisma.user.findUnique({
+      where: {
+        id: Number(params.id),
+      },
+    });
+
+    console.log('author name is', authorName);
+
+    return { props: {
+      overRideName: authorName,
+    }}
+  }
+}
+
+type Props = {
+  overRideName : any;
+}
+const Header: React.FC<Props> = (props) => {
+
+  console.log('recieved props are', props);
+
   const router = useRouter()
   const isActive: (pathname: string) => boolean = (pathname) =>
     router.pathname === pathname
@@ -13,30 +38,21 @@ const Header: React.FC = () => {
 
   let left = (
     <div className="left">
-      <Link href="/">
-        <a className="bold" data-active={isActive('/')}>
-          Feed
-        </a>
-      </Link>
+      <a href="/">
+        <h1 className={textStyles.header}>Donation <span className={textStyles.orange}>Tracker</span></h1>
+      </a>
       <style jsx>{`
-        .bold {
-          font-weight: bold;
-        }
-
-        a {
-          text-decoration: none;
-          color: #000;
-          display: inline-block;
-        }
-
-        .left a[data-active='true'] {
-          color: gray;
-        }
-
-        a + a {
-          margin-left: 1rem;
-        }
-      `}</style>
+          a {
+            text-decoration: none;
+            display: inline-block;
+            color: #FFFFFF;
+            transition: 0.2s ease-in-out;
+          }
+          a:hover {
+            text-decoration: underline;
+          }
+          `}
+      </style>
     </div>
   )
 
@@ -45,40 +61,25 @@ const Header: React.FC = () => {
   if (loading) {
     left = (
       <div className="left">
-        <Link href="/">
-          <a className="bold" data-active={isActive('/')}>
-            Feed
-          </a>
-        </Link>
-        <style jsx>{`
-          .bold {
-            font-weight: bold;
-          }
-
+      <a href="/"><h1 className={textStyles.header}>Donation <span className={textStyles.orange}>Tracker</span></h1></a>
+      <style jsx>{`
           a {
             text-decoration: none;
-            color: #000;
             display: inline-block;
+            color: #FFFFFF;
+            transition: 0.2s ease-in-out;
           }
-
-          .left a[data-active='true'] {
-            color: gray;
+          a:hover {
+            text-decoration: underline;
           }
-
-          a + a {
-            margin-left: 1rem;
-          }
-        `}</style>
-      </div>
+          `}
+      </style>
+    </div>
     )
     right = (
-      <div className="right">
+      <div className={`right ${textStyles.orange} ${textStyles.bodyText}`}>
         <p>Validating session ...</p>
-        <style jsx>{`
-          .right {
-            margin-left: auto;
-          }
-        `}</style>
+        
       </div>
     )
   }
@@ -87,28 +88,27 @@ const Header: React.FC = () => {
     right = (
       <div className="right">
         <Link href="/api/auth/signin">
-          <a data-active={isActive('/signup')}>Log in</a>
+          <a data-active={isActive('/signup')} className={textStyles.bodyText}>Log in</a>
         </Link>
+        
         <style jsx>{`
           a {
             text-decoration: none;
-            color: #000;
             display: inline-block;
+            color: #FFFFFF;
+            transition: 0.2s ease-in-out;
           }
-
-          a + a {
-            margin-left: 1rem;
+          a:hover {
+            color: #FFA05A;
           }
-
-          .right {
-            margin-left: auto;
-          }
+          
 
           .right a {
-            border: 1px solid black;
+            border: none;
             padding: 0.5rem 1rem;
             border-radius: 3px;
           }
+          
         `}</style>
       </div>
     )
@@ -117,76 +117,57 @@ const Header: React.FC = () => {
   if (session) {
     left = (
       <div className="left">
-        <Link href="/">
-          <a className="bold" data-active={isActive('/')}>
-            Feed
-          </a>
-        </Link>
-        <Link href="/drafts">
-          <a data-active={isActive('/drafts')}>My drafts</a>
-        </Link>
-        <style jsx>{`
-          .bold {
-            font-weight: bold;
-          }
-
+      <a href="/">
+        <h1 className={textStyles.header}>Karim's <span className={textStyles.orange}>Donations</span></h1>
+      </a>
+      <style jsx>{`
           a {
             text-decoration: none;
-            color: #000;
             display: inline-block;
+            color: #FFFFFF;
+            transition: 0.2s ease-in-out;
           }
-
-          .left a[data-active='true'] {
-            color: gray;
+          a:hover {
+            text-decoration: underline;
           }
-
-          a + a {
-            margin-left: 1rem;
-          }
-        `}</style>
-      </div>
+          `}
+      </style>
+    </div>
     )
     right = (
       <div className="right">
-        <p>
-          {session.user.name} ({session.user.email})
-        </p>
         <Link href="/create">
           <button>
-            <a>New post</a>
+            <a className={textStyles.bodyText}>Add Donation</a>
           </button>
         </Link>
+        
         <button onClick={() => signOut()}>
-          <a>Log out</a>
+          <a className={textStyles.bodyText}>Log out</a>
         </button>
         <style jsx>{`
           a {
             text-decoration: none;
-            color: #000;
             display: inline-block;
+            color: #FFFFFF;
+            transition: 0.2s ease-in-out;
           }
-
-          p {
-            display: inline-block;
-            font-size: 13px;
-            padding-right: 1rem;
+          a:hover {
+            color: #FFA05A;
           }
 
           a + a {
             margin-left: 1rem;
           }
-
           .right {
-            margin-left: auto;
+            background-color: rgba(17,31,154,1);
           }
-
           .right a {
-            border: 1px solid black;
             padding: 0.5rem 1rem;
             border-radius: 3px;
           }
-
           button {
+            background-color: rgba(17,31,154,1);
             border: none;
           }
         `}</style>
@@ -194,14 +175,17 @@ const Header: React.FC = () => {
     )
   }
 
+
   return (
     <nav>
+      
       {left}
       {right}
       <style jsx>{`
         nav {
           display: flex;
-          padding: 2rem;
+          flex-flow: row wrap;
+          justify-content: space-between;
           align-items: center;
         }
       `}</style>

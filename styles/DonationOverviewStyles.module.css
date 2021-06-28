@@ -5,7 +5,7 @@
     width: 50%;
     min-width: 20rem;
     text-align: center;
-    box-shadow: 3px 3px 20px rgba(255, 160, 90, .26);
+    box-shadow: 3px 3px 56px rgba(255, 160, 90, .26);
 }
 
 .donationContainer {
@@ -15,15 +15,18 @@
     flex-direction: row;
     justify-content: space-between;
     align-content: space-between;
-    transition: box-shadow 0.1s ease-in;
+    transition: box-shadow 0.2s ease-in-out;
     margin-top: 1rem;
+    padding: 1.5rem 2rem;
 }
 .donationContainer:hover {
-    box-shadow: 1px 1px 3px #aaa;
-    ;
+    box-shadow: 3px 3px 20px rgba(255, 160, 90, .4);
+    
 }
 
 .donationListContainer {
+    padding-top: 2rem;
+    min-width: 20rem;
     width: 50%;
 }
 
@@ -32,4 +35,7 @@
     flex-direction: column;
     align-items: center;
     margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    width:100%;
 }
