@@ -27,7 +27,7 @@ export const getServerSideProps: GetServerSideProps = async ({params}) => {
 }
 
 type Props = {
-  overRideName : any;
+  overRideName ?: any;
 }
 const Header: React.FC<Props> = (props) => {
 
