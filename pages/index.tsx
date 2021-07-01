@@ -10,6 +10,8 @@ import textStyles from '../styles/Home.module.css';
 import layoutStyles from '../styles/DonationOverviewStyles.module.css';
 import { DonationTracker, TrackerProps } from "../components/DonationTracker";
 
+export const numberFormat : any  = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+
 export const getServerSideProps: GetServerSideProps = async ( {req, res} ) => {
   const session = await getSession({ req })
   if (!session) {

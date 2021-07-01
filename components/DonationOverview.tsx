@@ -7,6 +7,7 @@ import {withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import {numberFormat} from '../pages/index'
 
 interface DonationOverviewProps {
   amount: PeriodAmount
@@ -66,7 +67,7 @@ const DonationOverview: FC<DonationOverviewProps> = ({amount} : DonationOverview
 
           </div>
           
-          <ReactMarkdown className={textStyles.xlBodyText}children={`$${amount[periodStrings[selectedPeriodID]]}`} />
+          <ReactMarkdown className={textStyles.xlBodyText}children={`${numberFormat.format(amount[periodStrings[selectedPeriodID]]) }`} />
           <style jsx>{`
               div {
               background-color: rgba(17, 31, 154, 1);;

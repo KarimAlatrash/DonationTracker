@@ -11,6 +11,7 @@ export type TrackerProps = {
   }
   
 export const DonationTracker: React.FC<TrackerProps> = (props : TrackerProps) => {
+
     return (
         
         <div className="page">
