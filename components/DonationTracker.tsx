@@ -14,6 +14,7 @@ export type TrackerProps = {
 
 const institutionListProps : InstitutionType[] = [
   {
+    id: 1,
     amount : 800,
     institutionName: "Sistering Women's Shelter",
     institutionCity: 'Toronto',
@@ -21,6 +22,7 @@ const institutionListProps : InstitutionType[] = [
     institutionWebsite: 'https://google.ca'
   },
   {
+    id: 2,
     amount : 1200.50,
     institutionName: "Masjid",
     institutionCity: 'Toronto',

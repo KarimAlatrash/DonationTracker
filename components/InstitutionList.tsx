@@ -14,7 +14,7 @@ const InstitutionList : React.FC<InstitutionListProps> = ( {institutionList} : I
             <ReactMarkdown className={`${textStyles.orange} ${textStyles.header}`} children={'Where people have donated'} />
             <div className={layoutStyles.layoutContainer}>
                 {institutionList.map((institution) => (
-                    <InstitutionCard institution={institution}/>
+                    <InstitutionCard key={institution.id} institution={institution}/>
                 ))}
             </div>
         </div>

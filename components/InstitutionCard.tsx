@@ -10,6 +10,7 @@ interface InstitutionCardProps {
 
 export type InstitutionType = {
     amount : number;
+    id : number;
     institutionName : string;
     institutionCity : string;
     institutionNeighbourhood ?: string;
