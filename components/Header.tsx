@@ -39,10 +39,12 @@ const Header: React.FC<Props> = (props) => {
 
   const [session, loading] = useSession()
 
-  let left = (
+  const authorName : string = props.overRideName ? props.overRideName+"'s" : ''
+  
+  const left = (
     <div className="left">
       <a href="/">
-        <h1 className={textStyles.header}>Donation <span className={textStyles.orange}>Tracker</span></h1>
+        <h1 className={textStyles.header}>{authorName} Donation <span className={textStyles.orange}>Tracker</span></h1>
       </a>
       <style jsx>{`
           a {
@@ -62,23 +64,6 @@ const Header: React.FC<Props> = (props) => {
   let right = null
 
   if (loading) {
-    left = (
-      <div className="left">
-      <a href="/"><h1 className={textStyles.header}>Donation <span className={textStyles.orange}>Tracker</span></h1></a>
-      <style jsx>{`
-          a {
-            text-decoration: none;
-            display: inline-block;
-            color: #FFFFFF;
-            transition: 0.2s ease-in-out;
-          }
-          a:hover {
-            text-decoration: underline;
-          }
-          `}
-      </style>
-    </div>
-    )
     right = (
       <div className={`right ${textStyles.orange} ${textStyles.bodyText}`}>
         <p>Validating session ...</p>
@@ -118,30 +103,11 @@ const Header: React.FC<Props> = (props) => {
   }
 
   if (session) {
-    left = (
-      <div className="left">
-      <a href="/">
-        <h1 className={textStyles.header}>Karim's <span className={textStyles.orange}>Donations</span></h1>
-      </a>
-      <style jsx>{`
-          a {
-            text-decoration: none;
-            display: inline-block;
-            color: #FFFFFF;
-            transition: 0.2s ease-in-out;
-          }
-          a:hover {
-            text-decoration: underline;
-          }
-          `}
-      </style>
-    </div>
-    )
     right = (
       <div className="right">
         <Link href="/create">
           <button>
-            <a className={textStyles.bodyText}>Add Donation</a>
+            <a className={textStyles.bodyText}>Log Donation</a>
           </button>
         </Link>
         

@@ -3,12 +3,31 @@ import layoutStyles from '../styles/DonationOverviewStyles.module.css';
 import Layout from "../components/Layouts"
 import DonationOverview, { PeriodAmount} from "./DonationOverview";
 import SingleDonationCard, {Donation} from "./SingleDonationCard";
+import InstitutionList from './InstitutionList';
+import {InstitutionType} from './InstitutionCard'
 
 export type TrackerProps = {
     session: any,
     periodAmounts: PeriodAmount,
     donations: Donation[]
-  }
+}
+
+const institutionListProps : InstitutionType[] = [
+  {
+    amount : 2454.5454,
+    institutionName: "Sistering Women's Shelter",
+    institutionCity: 'Toronto',
+    institutionNeighbourhood: 'Bloordale',
+    institutionWebsite: 'https://google.ca'
+  },
+  {
+    amount : 23423432.432423423,
+    institutionName: "Masjid",
+    institutionCity: 'Toronto',
+    institutionNeighbourhood: 'Bloorcourt',
+    institutionWebsite: 'https://google.ca'
+  },
+]
   
 export const DonationTracker: React.FC<TrackerProps> = (props : TrackerProps) => {
 
@@ -30,7 +49,10 @@ export const DonationTracker: React.FC<TrackerProps> = (props : TrackerProps) =>
             </div>
           </main>
           :
-          <a className={`${textStyles.xlBodyText} ${textStyles.hyperlink}`} href="/api/auth/signin">Log in to start tracking donations</a>
+          <div>
+            <a className={`${textStyles.xlBodyText} ${textStyles.hyperlink}`} href="/api/auth/signin">Log in to start tracking donations</a>
+            <InstitutionList institutionList={institutionListProps}/>
+          </div>
           }
           
         </div>
