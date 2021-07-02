@@ -14,14 +14,14 @@ export type TrackerProps = {
 
 const institutionListProps : InstitutionType[] = [
   {
-    amount : 2454.5454,
+    amount : 800,
     institutionName: "Sistering Women's Shelter",
     institutionCity: 'Toronto',
     institutionNeighbourhood: 'Bloordale',
     institutionWebsite: 'https://google.ca'
   },
   {
-    amount : 23423432.432423423,
+    amount : 1200.50,
     institutionName: "Masjid",
     institutionCity: 'Toronto',
     institutionNeighbourhood: 'Bloorcourt',
