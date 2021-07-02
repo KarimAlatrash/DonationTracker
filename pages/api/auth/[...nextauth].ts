@@ -8,13 +8,14 @@ const prisma = new PrismaClient();
 
 const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options);
 export default authHandler;
+console.log(process.env.SECRET);
 
 const options:NextAuthOptions = {
   providers: [
-    /* Providers.GitHub({
+    Providers.GitHub({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
-    }), */
+    }),
     Providers.Google({
         clientId: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,

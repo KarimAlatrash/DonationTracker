@@ -31,8 +31,6 @@ type Props = {
 }
 const Header: React.FC<Props> = (props) => {
 
-  console.log('recieved props are', props);
-
   const router = useRouter()
   const isActive: (pathname: string) => boolean = (pathname) =>
     router.pathname === pathname
