@@ -14,7 +14,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const donationList = await prisma.donation.findMany({
     where: { 
       author: {
-        id: Number(params?.id) || -1,
+        id: String(params?.id) || "",
       },
       published: true
     },
