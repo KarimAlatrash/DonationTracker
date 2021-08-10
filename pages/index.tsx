@@ -10,18 +10,41 @@ import ReactMarkdown from "react-markdown";
 import textStyles from '../styles/Home.module.css';
 import layoutStyles from '../styles/DonationOverviewStyles.module.css';
 import { DonationTracker, TrackerProps } from "../components/DonationTracker";
+import InstitutionList from "../components/InstitutionList"
+import { InstitutionType } from "../components/InstitutionCard"
+
+interface IndexProps {
+  institutionList: InstitutionType[],
+  session: any,
+  periodAmounts: PeriodAmount,
+  donations: Donation[], 
+}
 
 export const numberFormat : any  = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
 
 export const getServerSideProps: GetServerSideProps = async ( {req, res} ) => {
   const session = await getSession({ req })
   if (!session) {
-    res.statusCode = 403
-    
+    const institutionData = await prisma.donation.findMany({
+      where: {
+        published: true
+      },
+      select: {
+        institution: true,
+        amount: true,
+      }
+    });
+    let collatedInstitutionData = institutionData.reduce((r, {institution,amount}, index) => {
+      r[index] = r[index] || {institution, amount,}
+      r[index].amount += amount;
+      return r
+    }, {});
+
     return { props: {
+      institutionList: Object.values(collatedInstitutionData),
       session: session,
       periodAmounts: null,
-      donations: null,
+      donations: null, 
     }}
   }
 
@@ -71,14 +94,23 @@ export const getServerSideProps: GetServerSideProps = async ( {req, res} ) => {
   }}
 }
 
-const DonationPage: React.FC<TrackerProps> = (props : TrackerProps) => {
+const DonationPage: React.FC<IndexProps> = (props : IndexProps) => {
   return (
     <Layout>
       <Head>
         <title>Donation Tracker</title>
         <meta property="og:title" content="My page title" key="title" />
       </Head>
-      <DonationTracker {...props} />
+      {
+        props.session ? 
+          <DonationTracker {...props} />
+        :
+        <div>
+          <a className={`${textStyles.xlBodyText} ${textStyles.hyperlink}`} href="/api/auth/signin">Log in to start tracking donations</a>
+          <InstitutionList {...props}/>
+        </div>
+      }
+      
     </Layout>
   )
 }

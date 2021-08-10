@@ -10,11 +10,10 @@ interface InstitutionCardProps {
 
 export type InstitutionType = {
     amount : number;
-    id : number;
-    institutionName : string;
-    institutionCity : string;
+    institution : string;
+    institutionCity ?: string;
     institutionNeighbourhood ?: string;
-    institutionWebsite : string;
+    institutionWebsite ?: string;
 }
 
 const InstitutionCard: FC<InstitutionCardProps> = ({institution}: InstitutionCardProps)=> {
@@ -24,8 +23,8 @@ const InstitutionCard: FC<InstitutionCardProps> = ({institution}: InstitutionCar
     return (
         <div className={layoutStyles.institutionContainer}>
 
-            <ReactMarkdown className={textStyles.header} children={institution.institutionName} />
-            <ReactMarkdown className={textStyles.bodyText} children={locationString} />
+            <ReactMarkdown className={textStyles.header} children={institution.institution} />
+            {/* {locationString && <ReactMarkdown className={textStyles.bodyText} children={locationString} />} */}
             <ReactMarkdown className={textStyles.bodyText} children={`Amount donated to date: ${numberFormat.format(institution.amount)}`} />
             <style jsx>{`
                 div {
