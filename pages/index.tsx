@@ -1,5 +1,6 @@
 import React from "react"
 import { GetServerSideProps } from "next"
+import Head from 'next/head'
 import Layout from "../components/Layouts"
 import { getSession } from 'next-auth/client'
 import prisma from "../lib/prisma";
@@ -73,6 +74,10 @@ export const getServerSideProps: GetServerSideProps = async ( {req, res} ) => {
 const DonationPage: React.FC<TrackerProps> = (props : TrackerProps) => {
   return (
     <Layout>
+      <Head>
+        <title>Donation Tracker</title>
+        <meta property="og:title" content="My page title" key="title" />
+      </Head>
       <DonationTracker {...props} />
     </Layout>
   )
