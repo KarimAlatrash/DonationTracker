@@ -11,7 +11,7 @@ export const getServerSideProps: GetServerSideProps = async ({params}) => {
   if(params?.id) {
     const authorName = await prisma.user.findUnique({
       where: {
-        id: Number(params.id),
+        id: String(params.id[0]),
       },
       select : {
         name : true,

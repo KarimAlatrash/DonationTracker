@@ -71,7 +71,6 @@ export const getServerSideProps: GetServerSideProps = async ( {req, res} ) => {
 }
 
 const DonationPage: React.FC<TrackerProps> = (props : TrackerProps) => {
-  console.log(props);
   return (
     <Layout>
       <DonationTracker {...props} />
